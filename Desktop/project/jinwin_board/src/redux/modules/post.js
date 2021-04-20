@@ -4,6 +4,9 @@ import axios from "axios";
 import { response } from "./mockup";
 import { useHistory } from "react-router";
 
+// ES6 Modules or TypeScript
+import Swal from "sweetalert2";
+
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
 const ONE_POST = "ONE_POST";
@@ -156,7 +159,14 @@ const addPostSV = (author, title, comment, history) => {
     };
     axios(options).then((response) => {
       console.log(response.data);
-      window.alert("게시물 작성이 완료되었습니다.");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "게시물 작성이 완료되었습니다!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       history.push("/");
     });
   };
@@ -190,7 +200,13 @@ const editPostSV = (post_id, title, comment, history) => {
 
         console.log(_post);
         dispatch(editPost(_post));
-        window.alert("게시물 수정이 완료되었습니다.");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "게시물 수정이 완료되었습니다!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         history.push("/");
       })
       .catch((error) => {
@@ -214,19 +230,33 @@ const deletePostSV = (post_id, history) => {
       },
       data: formData,
     };
-    axios(options)
-      .then((response) => {
-        console.log(response);
+    axios(options);
+    Swal.fire({
+      title: "정말 삭제하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "네, 삭제할게요",
+    }).then((result) => {
+      if (result.isConfirmed) {
         dispatch(deletePost(post_id));
-        window.alert("게시물 삭제가 완료되었습니다.");
+        Swal.fire("삭제되었습니다!");
         history.push("/");
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response) {
-          window.alert(error.response.data.errorMessage);
-        }
-      });
+      }
+    });
+    // .then((response) => {
+    //   console.log(response);
+    //   dispatch(deletePost(post_id));
+    //   window.alert("게시물 삭제가 완료되었습니다.");
+    //   history.push("/");
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   if (error.response) {
+    //     window.alert(error.response.data.errorMessage);
+    //   }
+    // });
   };
 };
 
