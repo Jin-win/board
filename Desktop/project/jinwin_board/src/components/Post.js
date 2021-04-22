@@ -17,6 +17,7 @@ const Post = (props) => {
         <Td>{props.no}</Td>
         <Td>{props.title}</Td>
         <Td>{props.author}</Td>
+        <Td>👍</Td>
       </Tr>
     </React.Fragment>
   );

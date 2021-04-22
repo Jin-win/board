@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { actionsCreators as postActions } from "../redux/modules/post";
 import Post from "../components/Post";
+import Input from "../elements/Input";
 
 const PostList = (props) => {
   const dispatch = useDispatch();
+
+  const [search, setSearch] = React.useState("");
 
   const { history } = props;
 
@@ -19,33 +22,59 @@ const PostList = (props) => {
 
   return (
     <Container>
+      <Search>
+        <Input
+          value={search}
+          placeholder="검색"
+          _onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        ></Input>
+      </Search>
       <Table>
         <thead>
           <tr>
             <Th>글번호</Th>
             <Th>제목</Th>
             <Th>글쓴이</Th>
+            <Th>좋아요</Th>
           </tr>
         </thead>
         <thead>
-          {post_list.map((p, i) => {
-            return (
-              <>
-                <Post
-                  key={i}
-                  {...p}
-                  // onClick={() => {
-                  //   history.push("/view/" + post_list._id);
-                  // }}
-                />
-              </>
-            );
-          })}
+          {post_list
+            .filter((val) => {
+              if (search == "") {
+                return val;
+              } else if (val.title.includes(search)) {
+                return val;
+              } else if (val.author.includes(search)) {
+                return val;
+              }
+            })
+            .map((p, i) => {
+              return (
+                <>
+                  <Post
+                    key={i}
+                    {...p}
+                    // onClick={() => {
+                    //   history.push("/view/" + post_list._id);
+                    // }}
+                  />
+                </>
+              );
+            })}
         </thead>
       </Table>
     </Container>
   );
 };
+const Search = styled.div`
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 2px solid rgba(29, 161, 242, 1);
+`;
 
 const Table = styled.table`
   width: 100%;

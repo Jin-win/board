@@ -9,6 +9,7 @@ const PostDetail = (props) => {
 
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
+  let [like, setLike] = React.useState(0);
 
   return (
     <Container>
@@ -28,6 +29,14 @@ const PostDetail = (props) => {
       </Title>
 
       <MyComment size="16px">{props.comment}</MyComment>
+      <span
+        onClick={() => {
+          setLike(like + 1);
+        }}
+      >
+        👍
+        {like}
+      </span>
     </Container>
   );
 };
