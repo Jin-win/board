@@ -55,7 +55,7 @@ const MainView = styled.div`
   flex-direction: column;
   width: 800px;
   height: 200px;
-  border: 1px solid rgba(29, 161, 242, 1);
+  border: 2px solid rgba(29, 161, 242, 1);
   justify-content: center;
   margin: auto;
   margin-top: 30px;

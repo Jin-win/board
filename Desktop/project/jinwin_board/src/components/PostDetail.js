@@ -11,16 +11,47 @@ const PostDetail = (props) => {
   console.log(post_list);
 
   return (
-    <>
-      <Text>{props.title}</Text>
-      <Text>{props.author}</Text>
-      <MyComment>{props.comment}</MyComment>
-    </>
+    <Container>
+      <Title>
+        <Text bold size="16px">
+          제목:
+        </Text>
+        &nbsp;
+        <Text size="16px">{props.title}</Text>
+      </Title>
+      <Title>
+        <Text bold size="16px">
+          글쓴이:
+        </Text>
+        &nbsp;
+        <Text size="16px">{props.author}</Text>
+      </Title>
+
+      <MyComment size="16px">{props.comment}</MyComment>
+    </Container>
   );
 };
 
+const Title = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 const MyComment = styled.div`
+  padding: 10px;
   width: 400px;
+  height: 100%;
   text-align: center;
   margin: auto;
   border: 1px solid rgba(29, 161, 242, 1);

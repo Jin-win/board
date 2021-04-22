@@ -19,15 +19,15 @@ const PostList = (props) => {
 
   return (
     <Container>
-      <table>
+      <Table>
         <thead>
           <tr>
-            <th>글번호</th>
-            <th>제목</th>
-            <th>글쓴이</th>
+            <Th>글번호</Th>
+            <Th>제목</Th>
+            <Th>글쓴이</Th>
           </tr>
         </thead>
-        <tbody>
+        <thead>
           {post_list.map((p, i) => {
             return (
               <>
@@ -41,21 +41,35 @@ const PostList = (props) => {
               </>
             );
           })}
-        </tbody>
-      </table>
+        </thead>
+      </Table>
     </Container>
   );
 };
+
+const Table = styled.table`
+  width: 100%;
+  border-top: 2px solid rgba(29, 161, 242, 1);
+  border-bottom: 2px solid rgba(29, 161, 242, 1);
+  border-collapse: collapse;
+`;
+
+const Th = styled.th`
+  border-bottom: 2px solid rgba(29, 161, 242, 1);
+  padding: 10px;
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 800px;
-  border: 1px solid rgba(29, 161, 242, 1);
+  height: 100%;
+  /* border: 1px solid rgba(29, 161, 242, 1); */
   justify-content: center;
   text-align: center;
   margin: auto;
   margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
 export default PostList;

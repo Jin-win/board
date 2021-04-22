@@ -162,7 +162,7 @@ const addPostSV = (author, title, comment, history) => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "게시물 작성이 완료되었습니다!",
+        title: "게시물 작성 완료!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -203,7 +203,7 @@ const editPostSV = (post_id, title, comment, history) => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "게시물 수정이 완료되었습니다!",
+          title: "게시물 수정 완료!",
           showConfirmButton: false,
           timer: 1500,
         });

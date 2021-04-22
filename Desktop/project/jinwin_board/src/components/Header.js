@@ -14,7 +14,7 @@ const Header = (props) => {
       <MyNav>
         <img src={imgA} width="30" heigth="30" alt="logo"></img>
         &nbsp;
-        <div>지니터</div>
+        <div>짹짹쓰</div>
       </MyNav>
     </Grid>
   );

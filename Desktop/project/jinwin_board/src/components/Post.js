@@ -9,17 +9,29 @@ const Post = (props) => {
 
   return (
     <React.Fragment>
-      <tr
+      <Tr
         onClick={() => {
           history.push(`/view/${props._id}`);
         }}
       >
-        <td>{props.no}</td>
-        <td>{props.title}</td>
-        <td>{props.author}</td>
-      </tr>
+        <Td>{props.no}</Td>
+        <Td>{props.title}</Td>
+        <Td>{props.author}</Td>
+      </Tr>
     </React.Fragment>
   );
 };
+
+const Td = styled.td`
+  border-bottom: 1px solid rgba(29, 161, 242, 1);
+  padding: 10px;
+`;
+
+const Tr = styled.tr`
+  &:hover {
+    background-color: rgba(29, 161, 242, 1);
+    color: white;
+  }
+`;
 
 export default withRouter(Post);
